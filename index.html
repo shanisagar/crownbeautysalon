@@ -22,7 +22,7 @@
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:Poppins,system-ui,sans-serif;line-height:1.6;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
-img{max-width:100%;display:block}
+img{max-width:100%;height:auto;display:block}
 .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
 .gold{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 .script{font-family:"Great Vibes",cursive;font-weight:400}
@@ -75,7 +75,7 @@ header.solid{background:rgba(11,10,8,.92);backdrop-filter:blur(10px);border-colo
   .hero-grid{grid-template-columns:1fr;gap:40px}
   .hero p{margin-left:auto;margin-right:auto}
   .hero .ctas,.tags{justify-content:center}
-  .poster{max-width:300px}
+  .poster{max-width:min(360px,88vw)}
 }
 
 /* offer strip */
