@@ -134,8 +134,10 @@ section{padding:96px 0}
 .card h3{font-size:22px;margin-bottom:20px;color:var(--gold2)}
 form{display:grid;gap:14px}
 label{font-size:13px;color:var(--muted);letter-spacing:.05em}
-input,select,textarea{width:100%;margin-top:6px;padding:13px 16px;border-radius:12px;border:1px solid var(--line);background:#0f0d09;color:var(--text);font:inherit;font-size:15px}
+input,select,textarea{width:100%;color-scheme:dark;margin-top:6px;padding:13px 16px;border-radius:12px;border:1px solid var(--line);background:#0f0d09;color:var(--text);font:inherit;font-size:15px}
 input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold)}
+input[type=date]{cursor:pointer;min-height:50px;-webkit-appearance:none;appearance:none}
+input[type=date]::-webkit-calendar-picker-indicator{filter:invert(78%) sepia(40%) saturate(500%) hue-rotate(5deg);cursor:pointer;opacity:1}
 textarea{resize:vertical;min-height:80px}
 form .btn{justify-content:center;margin-top:6px}
 .contact-list{list-style:none;display:grid;gap:22px}
@@ -312,7 +314,7 @@ footer .script{font-size:26px;color:var(--gold2)}
               <option>Other / Not sure</option>
             </select>
           </label>
-          <label>Preferred date<input name="date" type="date"></label>
+          <label>Preferred date<input name="date" type="date" id="dateInput"></label>
           <label>Message (optional)<textarea name="msg" placeholder="Preferred time, questions, opening offer…"></textarea></label>
           <button class="btn btn-wa" type="submit"><svg><use href="#wa"/></svg>Send on WhatsApp</button>
         </form>
@@ -369,6 +371,11 @@ menu.addEventListener('click', e => { if (e.target.tagName === 'A') { menu.class
 // "Book this" links preselect the service
 const svcSelect = document.getElementById('svcSelect');
 document.querySelectorAll('[data-svc]').forEach(a => a.addEventListener('click', () => { svcSelect.value = a.dataset.svc; }));
+
+// open the calendar when any part of the date box is tapped, and block past dates
+const dateInput = document.getElementById('dateInput');
+dateInput.min = new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+dateInput.addEventListener('click', () => { try { dateInput.showPicker(); } catch (e) {} });
 
 // booking form -> WhatsApp
 document.getElementById('bookForm').addEventListener('submit', e => {
